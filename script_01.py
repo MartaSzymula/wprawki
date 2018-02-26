@@ -1,4 +1,5 @@
 import math
+import cmath
 
 def task1(text="Count stuff in this random sentence."):
     print(text)
@@ -42,11 +43,29 @@ def task4(text='long text to revert'):
         reverted.append(to_revert[i-1])
     print(''.join(reverted))
 
-# def task5(a=4,b=3,c=-5):
-
+def task5(a=4,b=1,c=7):
+    x1=0
+    x2=0
+    delta=b**2-4*a*c
+    if delta>0:
+        x1=(-b-math.sqrt(delta))/2*a
+        x2=(-b+math.sqrt(delta))/2*a
+        print ('Roots are:')
+        print(x1,x2)
+    if delta is 0:
+        x1=-b/2*a
+        print(x1)
+    if delta<0:
+        square_delta=1j*math.sqrt(4*a*c-b**2)
+        new_delta=-delta
+        imaginary=math.sqrt(new_delta)/2*a
+        x1=-b-(imaginary)*1j
+        x2=-b+imaginary*1j
+        print (x1,x2)
 
 if __name__ == '__main__':
     task1()
     # task2()
     task3()
     task4()
+    task5()
