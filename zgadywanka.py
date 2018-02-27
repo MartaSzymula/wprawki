@@ -2,8 +2,8 @@ import random
 import math
 minval=1
 maxval=10
-no=maxval-minval
-chances=int(math.log(no,2))
+delta=maxval-minval
+chances=int(math.log(delta,2))
 
 secretnumber=random.randint(minval,maxval)
 
