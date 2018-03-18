@@ -13,7 +13,7 @@ class Test_task8(unittest.TestCase):
         self.assertEqual( script_01.task8('a10'), 'one zero')
 
     def test_strings_one51(self):
-        self.assertEqual( script_01.task8('one51'), 'one five one')
+        self.assertEqual( script_01.task8('one 51'), 'one five one')
 
 
 class Test_task9(unittest.TestCase):
@@ -31,4 +31,4 @@ class Test_task9(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)

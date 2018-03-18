@@ -69,7 +69,7 @@ def task5(a=4, b=1, c=7):
         print(x1, x2)
 
 def task6(a=[1,2,12,4], b=[2,4,2,9]):
-    """Function task6 counts dot (scalar) product of tw vectors"""
+    """Function task6 counts dot (scalar) product of two vectors"""
     product = 0
     if len(a) == len(b):
         for i in range(0, len(a)):
@@ -79,12 +79,89 @@ def task6(a=[1,2,12,4], b=[2,4,2,9]):
     else:
         print('Multipication impossible')
 
-# def task7()
+def task7(n=8):
+    """task7 generates a dictionary of n pairs which are (i, i*i)
+    and prints it"""
+    dictionary=dict()
+    for i in range (1, n+1):
+        dictionary[i] = i*i
+    print(dictionary)
+
+def task8(to_replace='two 755 ff'):
+    """Function task8 converts numbers in variable to their text
+    equivalents. If there is already such text equivalent, Function
+    leaves it there."""
+    numbers = {
+    '0' : "zero",
+    '1' : "one",
+    '2' : "two",
+    '3' : "three",
+    '4' : "four",
+    '5' : "five",
+    '6' : "six",
+    '7' : "seven",
+    '8' : "eight",
+    '9' : "nine"
+    }
+
+    len_to_replace = str(to_replace)
+    text = ''
+    list_elements = len_to_replace.split()
+
+    for n in range (0, len(list_elements)):
+        if list_elements[n] in numbers.values():
+            text = text + ' ' + str(list_elements[n])
+
+        else:
+            for i in range (0, len(list_elements[n])):
+                if list_elements[n][i] in numbers:
+                    text = text + ' ' + str(numbers[list_elements[n][i]])
+
+    text = text.strip()
+    print(text)
+    return text
+
+def task9(x1=[3.5, 4.5], x2=None):
+    """Function task9 counts the average of two numbers & standard
+    deviation .
+
+    Parameters
+    ----------
+    x1 : list or float, default [3.5, 4.5]
+        If x1 is a list, then x2 is omitted.
+    x2 : float or None, default None
+
+    Returns
+    -------
+    float
+        Returned object is average of given parameters.
+    """
+    num_list = []
+    if type(x1) is list:
+        num_list = x1
+    else:
+        num_list = [x1, x2]
+    list_sum = 0
+    for i in range(0, len(num_list)):
+        num_float = float(num_list[i])
+        list_sum = list_sum + num_float
+    average = list_sum / len(num_list)
+    print("Average = " + str(average))
+
+    deviations = 0
+    for n in range(0, len(num_list)):
+        deviations = deviations + (num_list[n]-average)**2
+    st_deviation = math.sqrt(deviations/(len(num_list)-1))
+    print("Standard deviation = " + str(st_deviation))
+    return average
 
 if __name__ == '__main__':
-    task1()
-    task2()
-    task3()
-    task4()
-    task5()
-    task6()
+    # task1()
+    # task2()
+    # task3()
+    # task4()
+    # task5()
+    # task6()
+    # task7()
+    task8()
+    # task9()
