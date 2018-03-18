@@ -121,12 +121,31 @@ def task8(to_replace='two 755 ff'):
     print(text)
     return text
 
-def task9(num_list=[1, 3, -2]):
-    sum = 0
+def task9(x1=[3.5, 4.5], x2=None):
+    """Function task9 counts the average of two numbers & standard
+    deviation .
+
+    Parameters
+    ----------
+    x1 : list or float, default [3.5, 4.5]
+        If x1 is a list, then x2 is omitted.
+    x2 : float or None, default None
+
+    Returns
+    -------
+    float
+        Returned object is average of given parameters.
+    """
+    num_list = []
+    if type(x1) is list:
+        num_list = x1
+    else:
+        num_list = [x1, x2]
+    list_sum = 0
     for i in range(0, len(num_list)):
-        num_float=float(i)
-        sum = sum + num_float
-    average = sum / len(num_list)
+        num_float=float(num_list[i])
+        list_sum = list_sum + num_float
+    average = list_sum / len(num_list)
     print("Average = " + str(average))
 
     deviations = 0
