@@ -104,9 +104,9 @@ def task8(to_replace='two 755 ff'):
     '9' : "nine"
     }
 
-    a_length = str(to_replace)
+    len_to_replace = str(to_replace)
     text = ''
-    list_elements = a_length.split()
+    list_elements = len_to_replace.split()
 
     for n in range (0, len(list_elements)):
         if list_elements[n] in numbers.values():
@@ -143,7 +143,7 @@ def task9(x1=[3.5, 4.5], x2=None):
         num_list = [x1, x2]
     list_sum = 0
     for i in range(0, len(num_list)):
-        num_float=float(num_list[i])
+        num_float = float(num_list[i])
         list_sum = list_sum + num_float
     average = list_sum / len(num_list)
     print("Average = " + str(average))
@@ -163,5 +163,5 @@ if __name__ == '__main__':
     # task5()
     # task6()
     # task7()
-    # task8()
-    task9()
+    task8()
+    # task9()
