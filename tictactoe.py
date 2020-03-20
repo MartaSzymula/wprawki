@@ -1,3 +1,5 @@
+from tictactoe_winner import checkwinner
+
 theBoard = {'top-l':' ','top-m':' ','top-r':' ',
             'mid-l':' ','mid-m':' ','mid-r':' ',
             'low-l':' ','low-m':' ','low-r':' '}
@@ -9,19 +11,28 @@ def printBoard(board):
     print('-+-+-')
     print(board['low-l'] + '|' + board['low-m'] + '|' + board['low-r'])
     print('\n')
-#printBoard(theBoard)
 
 turn='X'
-for i in range(9):
+gameon=True
+while gameon==True:
+
     printBoard(theBoard)
     print('Kolej na '+ turn + '. Wybierz pole:')
-    move = input()
-    if theBoard[move.lower()] == ' ':
-        theBoard[move.lower()] = turn
+    move = input().lower()
+
+    if move in theBoard:
+
+        if theBoard[move] == ' ':
+            theBoard[move] = turn
+        else:
+            print('\nTo pole jest zajęte! Tracisz turę.\n')
+        if turn == 'X':
+            turn = 'O'
+        else:
+            turn = 'X'
     else:
-        print('\nTo pole jest zajęte! Tracisz turę.\n')
-    if turn == 'X':
-        turn = 'O'
-    else:
-        turn = 'X'
-#    printBoard(theBoard)
+        print('\nTakie pole nie istnieje. Spróbuj jeszcze raz.\n')
+
+    gameon = checkwinner(theBoard)
+
+printBoard(theBoard)
