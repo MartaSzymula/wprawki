@@ -4,6 +4,8 @@ import os
 from PIL.ExifTags import TAGS
 from PIL import Image
 import shutil
+import exif
+import exifread
 
 """Extracting date based on https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3
 """
@@ -49,23 +51,50 @@ def get_date(sourceFolder, destinationFolder):
 
                 except :
                     print("Exif didn't work for:" + filename)
-                    year = '1970'
-                    month = '01'
-                    day = '01'
+                    # year = '1970'
+                    # month = '01'
+                    # day = '01'
 
+                # Directory creation as suggested on: https://thispointer.com/how-to-create-a-directory-in-python/
 
-                # print(f"{year}-{month}-{day}")
                 date = f"{year}-{month}-{day}"
 
-                # os.mkdir(f"{destinationFolder}/{date}")
+                try:
+                    os.mkdir(f"{destinationFolder}/{date}")
+                    print("Directory " , f"{destinationFolder}/{date}" ,  " created ")
+                except FileExistsError:
+                    print("Directory " , f"{destinationFolder}/{date}" ,  " already exists")
 
                 photo_list.append(filename)
-                # print(photo_list)
+
                 number = len(photo_list)
                 new_photo_name = enumeration(number)
                 print(f"I\'m renaming file: {filename} to {new_photo_name}.jpg and moving to foler {date}")
 
-                # shutil.move(f"{folderName}/{filename}", f"{destinationFolder}/{date}/{new_photo_name}")
+                # shutil.move(f"{folderName}/{filename}", f"{destinationFolder}/{date}/{new_photo_name}.jpg")
+
+            elif filename.split('.')[-1].lower() == 'nef':
+
+                with open(f"{folderName}\\{filename}", 'rb') as image_file:
+
+                    tags = exifread.process_file(image_file)
+
+                    exif = str(tags['EXIF DateTimeOriginal'])
+
+                    year = exif[0:4]
+                    month = exif[5:7]
+                    day = exif[8:10]
+
+                    date = f"{year}-{month}-{day}"
+                    # print(date)
+
+                photo_list.append(filename)
+
+                number = len(photo_list)
+                new_photo_name = enumeration(number)
+                print(f"I\'m renaming file: {filename} to {new_photo_name}.nef and moving to foler {date}")
+
+                # shutil.move(f"{folderName}/{filename}", f"{destinationFolder}/{date}/{new_photo_name}.nef")
 
 
 if __name__ == '__main__':
