@@ -3,7 +3,7 @@
 import os
 import shutil
 import exifread
-
+import argparse
 
 def get_exif(folderName, filename):
 
@@ -84,7 +84,13 @@ def main(sourceFolder, destinationFolder):
 
 if __name__ == '__main__':
 
-    sourceFolder = 'C:/Users/Ja/Desktop/test-JP'
-    destinationFolder = 'C:/Users/Ja/Desktop/dest-JP'
+    parser = argparse.ArgumentParser(description='This program is for moving and renaming .jpg and .nef files.')
 
-    main(sourceFolder, destinationFolder)
+    parser.add_argument('--sourceFolder', type=str, default='C:/Users/Ja/Desktop/test-JP',
+                        help='Path to folder with pictures.')
+    parser.add_argument('--destinationFolder', type=str, default='C:/Users/Ja/Desktop/dest-JP',
+                        help='Destination path for processed pictures')
+
+    args = parser.parse_args()
+
+    main(args.sourceFolder, args.destinationFolder)
