@@ -6,14 +6,27 @@ import exifread
 import argparse
 
 def get_exif(folderName, filename):
+    """Gets picture's meta data with exifread function.
 
+    Parameters
+    ----------
+    folderName : str
+        Parent folder of the picture (from os.walk).
+    filename : str
+        Filename from os.walk loop.
+
+    Returns
+    -------
+        Returns meta data tags.
+    """
     with open(f"{folderName}\\{filename}", 'rb') as image_file:
         tags = exifread.process_file(image_file)
     return tags
 
 
 def get_date(date_tag):
-
+    """Converts date from tag to string in format yyy-mm-dd.
+    """
     year = date_tag[0:4]
     month = date_tag[5:7]
     day = date_tag[8:10]
@@ -22,6 +35,17 @@ def get_date(date_tag):
 
 
 def get_file_name(number):
+    """File naming convention.
+
+    Parameters
+    ----------
+    number : int
+
+    Returns
+    -------
+    str
+        File name.
+    """
 
     if number <10:
         photo_num = "DSC_000" + str(number)
@@ -39,6 +63,16 @@ def get_file_name(number):
 
 
 def main(sourceFolder, destinationFolder):
+    """This function walks through all folders and files in sourceFolder, moves them
+    to new location based on date and type of the file and changes their names.
+
+    Parameters
+    ----------
+    sourceFolder : str
+
+    destinationFolder : str
+
+    """
 
     photo_list = []
     number = ""
