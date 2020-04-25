@@ -17,7 +17,7 @@ class Card:
 
 
 
-    def show(self):
+    def show_card(self):
 
         print(f'Card is {self.value} {self.color}')
         pass
@@ -34,10 +34,23 @@ class Deck:
             for color in CARD_COLORS:
                 self.cards.append(Card(value, color))
 
-    def show(self):
+    def show_deck(self):
 
         for card in self.cards:
-            card.show()
+            card.show_card()
+
+    def draw_card(self):
+
+        # c = random.choice(list(self.cards))
+        c = self.cards[0]
+        c.show_card()
+        return c
+
+    def shuffle(self):
+        random.shuffle(self.cards)
+        return self.cards
+
+
 
 
 class Player:
@@ -65,7 +78,8 @@ if __name__ == '__main__':
 
 
     d = Deck()
-    d.show()
+    d.shuffle()
+    d.draw_card()
 
 
      # Tu musi być jakaś pętla
@@ -74,7 +88,7 @@ if __name__ == '__main__':
     #     value = random.choice(list(CARD_VALUES))
     #     color = random.choice(list(CARD_COLORS))
     #     c = Card(value, color)
-    #     c.show()
+    #     c.show_card()
 
 
 
