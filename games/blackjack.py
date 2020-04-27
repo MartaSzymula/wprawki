@@ -36,12 +36,16 @@ class Deck:
         for card in self.cards:
             card.show_card()
 
-    def draw_card(self):
+    # def draw_card(self):
+    #
+    #     c = list.pop(self.cards)
+    #     c.show_card()
+    #     return c
 
-        # c = random.choice(list(self.cards))
-        c = list.pop(self.cards)
-        c.show_card()
-        return c
+    def draw_cards(self, amount):
+        cards_ = self.cards[:amount]
+        self.cards = self.cards[amount:]
+        return cards_
 
     def shuffle(self):
         random.shuffle(self.cards)
@@ -67,6 +71,10 @@ class Person:
         self.hand.append(card)
         return
 
+    def show_hand(self):
+        for card in self.hand:
+            card.show_card()
+
 
 class Player(Person):
     """docstring for Player."""
@@ -88,32 +96,78 @@ class Dealer(Person):
 
 # ręka dealera i gracza
 
+def
+    d = Deck()
+    d.shuffle()
+    # Initial 2 cards for each player
+    no_players = 3
+
+    dealer_hand = d.draw_cards(2)
+    dealer = Person('Dealer', dealer_hand)
+    dealer.show_hand()
+    print(f'Dealer\'s cards:{dealer.count_hand()}\n')
+    gameon = True
+    players = []
+
+    while gameon:
+
+        for number in range (1, no_players+1):
+
+            player_hand = d.draw_cards(2)
+            player = Person(f'Player {number}', player_hand)
+            player.show_hand()
+            print(f'Player {number} cards:{player.count_hand()}\n')
+
+            if player.count_hand() and dealer.count_hand() == 21:
+                print(f'Tie! Player {number} and dealer win!')
+                gameon = False
+                break
+
+            elif player.count_hand() == 21:
+                print(f'Blackjack! Player {number} wins!')
+                gameon = False
+                break
+
+            elif dealer.count_hand() == 21:
+                print('Blackjack! Dealer wins!')
+                gameon = False
+                break
+
+                players.append(player)
+
+                for number in range (1, no_players+1):
+
+                    hit = input(f'Player {number}: Would you like another card? Y/N\n')
+
+                    if hit==('y'):
+                        c5 = d.draw_cards(1)
+                        players[number].count_hand()
+                        print(f'Player {number} hand')
+                        players[number].show_hand()
+                        print('\n')
+
 
 if __name__ == '__main__':
 
-
-    d = Deck()
-    d.shuffle()
-# Initial 2 cards for each player
-    no_players = 3
-
-    dealer_hand = [d.draw_card(), d.draw_card()]
-    dealer = Person('Dealer', dealer_hand)
-    print(f'Dealer\'s cards:{dealer.count_hand()}\n')
-
-    for number in range (1, no_players+1):
-
-        player_hand = [d.draw_card(), d.draw_card()]
-        player = Person('Player', player_hand)
-        print(f'Player {number} cards:{player.count_hand()}\n')
-
-        if player_hand ==21:
-             print(f'Blackjack! Player {number} wins!')
-
-        elif dealer_hand == 21:
-            print('Blackjack! Dealer wins!')
-
-        # else:
+                #
+                #
+                #     if player_hand > 21:
+                #         print(f'Your hand is {player_hand}! You loose!')
+                #         break
+                #
+                # elif hit==('n'):
+                #     print('Dealer draws:')
+                #     c6 = d.draw_card()
+                #     dealer_hand +=CARD_VALUES[c6.value]
+                #
+                #     if dealer_hand > 21:
+                #         print(f'Dealer\'s hand is {dealer_hand}! Dealer looses!')
+                #         break
+                #
+                # elif hit==(''):
+                #     break
+                # else:
+                #     print('Please enter y or n from the keyboard')
 
 
 
